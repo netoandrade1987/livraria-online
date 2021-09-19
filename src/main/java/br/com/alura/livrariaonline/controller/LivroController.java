@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.livrariaonline.dto.LivroDto;
+import br.com.alura.livrariaonline.dto.LivroListDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
+import br.com.alura.livrariaonline.modelo.Livro;
 import br.com.alura.livrariaonline.service.LivroService;
 
 @RestController
@@ -21,13 +22,17 @@ public class LivroController {
 
 	@Autowired
 	private LivroService livroService;
-
+	
+	
 	@GetMapping
-	public List<LivroDto> Listar() {
+	public List<LivroListDto> Listar() {
 
 		return livroService.listar();
 
 	}
+	
+
+
 
 	@PostMapping
 	public void cadastrar(@RequestBody @Valid LivroFormDto livroFormDto) {

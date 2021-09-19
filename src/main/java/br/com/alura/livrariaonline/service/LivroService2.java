@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.livrariaonline.dto.LivroDto;
+import br.com.alura.livrariaonline.dto.LivroListDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
 import br.com.alura.livrariaonline.modelo.Autor;
 import br.com.alura.livrariaonline.modelo.Livro;

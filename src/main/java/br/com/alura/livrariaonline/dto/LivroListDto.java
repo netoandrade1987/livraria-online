@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import br.com.alura.livrariaonline.modelo.Autor;
 import lombok.Data;
 
-public @Data class LivroDto {
+public @Data class LivroListDto {
 	
 	@NotBlank
 	@Size(min=10)
@@ -21,7 +21,7 @@ public @Data class LivroDto {
 	
 	private short numeroPaginas;
 	
-	private Autor autor;
+	private AutorDto autorDto;
 	
 
 		

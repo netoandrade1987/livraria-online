@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
+import br.com.alura.livrariaonline.dto.AutorListDto;
 import br.com.alura.livrariaonline.modelo.Autor;
 
 @Service
@@ -18,10 +19,10 @@ public class AutorService {
 	private ModelMapper modelMapper = new ModelMapper();
 	
 	
-	public List<AutorDto> listar(){
+	public List<AutorListDto> listar(){
 		
 		return autores.stream()
-				.map(at-> modelMapper.map(at, AutorDto.class)).
+				.map(atldo-> modelMapper.map(atldo, AutorListDto.class)).
 				collect(Collectors.toList());
 		
 	}

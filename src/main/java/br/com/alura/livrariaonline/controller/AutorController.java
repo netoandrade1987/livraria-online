@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
+import br.com.alura.livrariaonline.dto.AutorListDto;
 import br.com.alura.livrariaonline.service.AutorService;
 
 @RestController
@@ -23,7 +24,7 @@ public class AutorController {
 	private AutorService autorService;
 
 	@GetMapping
-	public List<AutorDto> Listar() {
+	public List<AutorListDto> Listar() {
 
 		return autorService.listar();
 
