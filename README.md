@@ -12,10 +12,10 @@ Módulo 2.
 -Utilizamos o Java como Back-end do projeto e adotamos a arquitetura MVC. 
 -Adotamos a utilização do pattern DTO para customizar as classes de domínio.
 -Nas classes DTOs, realizamos validações dos campos através de annotations do pacote "javax.validation.constraints.*".
--Também nas classes de domínio, utilizamos a lib Lombok para deixarmos as classes mais organizadas, deixando o código menos verboso. Essa Lib gera através de 
-annotations os Getters e Setters, Construtores, método toString() etc.
+-Também nas classes de domínio, utilizamos a lib Lombok para deixarmos as classes mais organizadas e o código menos verboso. Essa Lib gera através de 
+annotations os Getters, Setters, Construtores, método toString() etc.
 -Criamos o cadastro e listagem de Autores e Livros.
--Para consumir a API, utilizamos o aplicativo PostMan. Utilizamos o format JSON para o cadastro e listagem das informações de autores e livros.
+-Para consumir a API, utilizamos o aplicativo PostMan. Utilizamos o format JSON para o cadastro e listagem das informações.
 
 
 # Bibliotecas e tecnologias utilizadas:
