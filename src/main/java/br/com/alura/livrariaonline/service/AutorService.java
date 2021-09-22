@@ -7,10 +7,19 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
 import br.com.alura.livrariaonline.dto.AutorListDto;
 import br.com.alura.livrariaonline.modelo.Autor;
+
+
+/**
+ * @author Neto Andrade
+ * @version 1.0
+ * 
+ * Descrição: Essa classe é responsável por realizar o cadastro 
+ * e listagem dos Autores.
+ *
+ */
 
 @Service
 public class AutorService {

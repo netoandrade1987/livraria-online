@@ -11,10 +11,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.livrariaonline.dto.LivroListDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
-import br.com.alura.livrariaonline.modelo.Livro;
+import br.com.alura.livrariaonline.dto.LivroListDto;
 import br.com.alura.livrariaonline.service.LivroService;
+
+/**
+ * @author Neto Andrade
+ * @version 1.0
+ * 
+ * Descrição: Essa classe é o Controller da aplicação para o objeto Livros, 
+ * ela é responsável por receber os métodos de uma API Rest.
+ * 
+ *
+ */
 
 @RestController
 @RequestMapping("/livros")
@@ -31,9 +40,6 @@ public class LivroController {
 
 	}
 	
-
-
-
 	@PostMapping
 	public void cadastrar(@RequestBody @Valid LivroFormDto livroFormDto) {
 

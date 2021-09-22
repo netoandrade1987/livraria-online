@@ -7,10 +7,18 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.LivroListDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
 import br.com.alura.livrariaonline.modelo.Livro;
+
+/**
+ * @author Neto Andrade
+ * @version 1.0
+ * 
+ * Descrição: Essa classe é responsável por realizar o cadastro 
+ * e listagem dos livros.
+ *
+ */
 
 @Service
 public class LivroService {

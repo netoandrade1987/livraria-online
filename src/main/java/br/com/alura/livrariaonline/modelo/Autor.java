@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.alura.livrariaonline.modelo;
 
 import java.time.LocalDate;
@@ -8,7 +5,12 @@ import java.time.LocalDate;
 import lombok.Data;
 
 /**
- * @author neto_
+ * 
+ * @author Neto Andrade
+ * @version 1.0
+ * 
+ * Descrição: Essa classe modela um objeto do tipo Autor. 
+ *
  *
  */
 public @Data class Autor {
@@ -18,14 +20,6 @@ public @Data class Autor {
 	private String email;
 	private LocalDate dataNascimento;
 	private String miniCurriculo;
-	
-	
-	@Override
-	public String toString() {
-		return "Autor [id=" + this.id + ", nome=" + this.nome + ", email=" + this.email + ", dataNascimento=" + this.dataNascimento + "]";
-	}
-	
-		
 	
 
 }
