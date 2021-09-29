@@ -30,3 +30,5 @@ annotations os Getters, Setters, Construtores, método toString() etc.
 - JSON
 - PostMan
 - Eclipse
+- MySQL
+- Pattern Repository
