@@ -8,7 +8,10 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import br.com.alura.livrariaonline.modelo.Autor;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -21,6 +24,8 @@ import lombok.Data;
  *
  */
 
+@AllArgsConstructor
+@NoArgsConstructor
 public @Data class LivroListDto {
 	
 	@NotBlank
@@ -34,7 +39,8 @@ public @Data class LivroListDto {
 	private short numeroPaginas;
 	
 	@NotNull
-	private AutorDto autorDto;
+	private Autor autor;
+//	private AutorDto autorDto;
 	
 
 		

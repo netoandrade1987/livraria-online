@@ -24,7 +24,8 @@ public @Data class Livro {
 	private String titulo;
 	private LocalDate dataLancamento;
 	private short numeroPaginas;
-	private AutorDto autor;
+//	private AutorDto autor;
+	private Autor autor;
 	
 	
 
