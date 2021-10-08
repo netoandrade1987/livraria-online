@@ -1,18 +1,23 @@
 package br.com.alura.livrariaonline.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.alura.livrariaonline.dto.AutorFormDto;
-import br.com.alura.livrariaonline.dto.AutorListDto;
+import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.service.AutorService;
 
 /**
@@ -33,16 +38,22 @@ public class AutorController {
 	private AutorService autorService;
 
 	@GetMapping
-	public List<AutorListDto> Listar() {
+	public Page<AutorDto> Listar(Pageable paginacao) {
 
-		return autorService.listar();
+		return autorService.listar(paginacao);
 
 	}
 
 	@PostMapping
-	public void cadastrar(@RequestBody @Valid AutorFormDto autorFormDto) {
+	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorFormDto autorFormDto, UriComponentsBuilder uriBuilder) {
 
-		autorService.cadastrar(autorFormDto);
+		AutorDto autorDto = autorService.cadastrar(autorFormDto);
+		
+		URI uri = uriBuilder
+				.path("/autores/{id}")
+				.buildAndExpand(autorDto.getId()).toUri();
+		
+		return ResponseEntity.created(uri).body(autorDto);
 
 	}
 

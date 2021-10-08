@@ -1,11 +1,7 @@
 package br.com.alura.livrariaonline.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -21,25 +17,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
  * 
  * @author Neto Andrade
  * @version 1.0
  * 
- * Descrição: Essa classe modela um objeto do tipo LivroFormDto. 
- * Essa classe é utilizada no cadastro de livros, precisamos
- * cadastrar um objeto do tipo autor também.
+ * Descrição: Essa classe modela um objeto do tipo LivroListDto. 
+ * Essa classe é utilizada para listar os livros cadastrados.
+ * Listamos o ID e Nome do Autor de cada livro também.
  *
  */
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LivroFormDto {
+@Getter
+@Setter
+public  class LivroDto {
 	
-
 	private Long id;
 	
 	@NotBlank
@@ -52,7 +46,13 @@ public class LivroFormDto {
 	@Positive
 	private Integer numeroPaginas;
 	
-	@JsonAlias("autor_id")
+	
+//	private AutorDto autorDto;
+	
+	
 	private Long  autorId;
+	
+
+		
 
 }

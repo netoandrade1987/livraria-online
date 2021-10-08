@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.livrariaonline.dto.LivroListDto;
+import br.com.alura.livrariaonline.dto.LivroDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
 import br.com.alura.livrariaonline.modelo.Livro;
+import br.com.alura.livrariaonline.repository.LivroRepository;
 
 /**
  * @author Neto Andrade
@@ -23,21 +29,27 @@ import br.com.alura.livrariaonline.modelo.Livro;
 @Service
 public class LivroService {
 
-	private List<Livro> livros = new ArrayList<Livro>();
+	@Autowired
+	private LivroRepository livroRepository;
 	private ModelMapper modelMapper = new ModelMapper();
 
-	public List<LivroListDto> listar() {
+	public Page<LivroDto> listar(Pageable paginacao) {
+		
+		Page<Livro> livros = livroRepository.findAll(paginacao);
 
-		return livros.stream().map(lv -> modelMapper.map(lv, LivroListDto.class))
-				.collect(Collectors.toList());
+		return livros.map(livro -> modelMapper.map(livro, LivroDto.class));
 
 	}
-
-	public void cadastrar(LivroFormDto livroFormDto) {
+	
+	@Transactional
+	public LivroDto cadastrar(LivroFormDto livroFormDto) {
 
 		Livro livro = modelMapper.map(livroFormDto, Livro.class);
-		livros.add(livro);
-
+		
+	//	livro.setId(null);
+		
+		return modelMapper.map(livroRepository.save(livro), LivroDto.class);
+		
 	}
 
 }

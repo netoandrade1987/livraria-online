@@ -2,12 +2,21 @@ package br.com.alura.livrariaonline.modelo;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import br.com.alura.livrariaonline.dto.AutorDto;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonAlias;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
@@ -19,13 +28,33 @@ import lombok.Data;
  *
  */
 
-public @Data class Livro {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table ( name="livros")
+public class Livro {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String titulo;
+	
+	@Column( name = "dataLancamento")
 	private LocalDate dataLancamento;
-	private short numeroPaginas;
-//	private AutorDto autor;
+	
+	@Column(name = "numeroPaginas")
+	private Integer numeroPaginas;
+	
+	@ManyToOne
+	@JoinColumn
 	private Autor autor;
+	
+//	@ManyToOne
+//	@JoinColumn
+//	private Long  autorId;
 	
 	
 

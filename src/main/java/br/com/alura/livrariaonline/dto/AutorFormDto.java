@@ -2,13 +2,17 @@ package br.com.alura.livrariaonline.dto;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
@@ -20,11 +24,14 @@ import lombok.Data;
  * Essa classe é utilizada no cadastro de Autor.
  *
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class AutorFormDto {
 
-public @Data class AutorFormDto {
-
-    @Positive
-	private int id;
+    
+	private Long id;
 	
 	@NotBlank
 	@Size(min=5)

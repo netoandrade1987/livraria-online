@@ -3,30 +3,13 @@ package br.com.alura.livrariaonline.dto;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.alura.livrariaonline.modelo.Autor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-/**
- * 
- * @author Neto Andrade
- * @version 1.0
- * 
- * Descrição: Essa classe modela um objeto do tipo LivroListDto. 
- * Essa classe é utilizada para listar os livros cadastrados.
- * Listamos o ID e Nome do Autor de cada livro também.
- *
- */
-
-@AllArgsConstructor
-@NoArgsConstructor
-public @Data class LivroListDto {
+public class LivroListDto {
+	
+	private Long id;
 	
 	@NotBlank
 	@Size(min=10)
@@ -36,13 +19,9 @@ public @Data class LivroListDto {
 	private LocalDate dataLancamento;
 	
 	@Positive
-	private short numeroPaginas;
+	private Integer numeroPaginas;
 	
-	@NotNull
-	private Autor autor;
-//	private AutorDto autorDto;
 	
-
-		
+	private Long autor;
 
 }
