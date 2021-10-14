@@ -12,7 +12,7 @@ import lombok.Setter;
 public class QuantidadeDeLivroPorAutorDto {
 	
 	public String autor;
-	public Integer quantidade;
+	public Long quantidade;
 	public Double percentual;
 	
 	
