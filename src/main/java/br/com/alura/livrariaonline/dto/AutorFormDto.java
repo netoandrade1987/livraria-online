@@ -2,14 +2,12 @@ package br.com.alura.livrariaonline.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,18 +32,19 @@ public class AutorFormDto {
 	private Long id;
 	
 	@NotBlank
-	@Size(min=5)
+	@Size(min=5, max = 255)
 	private String nome;
 	
 	@NotBlank
-	@Size(min=10)
+	@Size(min=6, max = 255)
+//	@Pattern(regexp = "")
 	private String email;
 	
 	@PastOrPresent
 	private LocalDate dataNascimento;
 	
 	@NotBlank
-	@Size(min=5)
+	@Size(min=10,  max = 400)
 	private String miniCurriculo;
 
 }
