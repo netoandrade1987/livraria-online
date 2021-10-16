@@ -33,19 +33,12 @@ public  class AutorDto {
 	
 	private Long id;
 	
-	@NotBlank
-	@Size(min=5)
 	private String nome;
 	
-	@NotBlank
-	@Size(min=10)
 	private String email;
 	
-	@PastOrPresent
 	private LocalDate dataNascimento;
 	
-	@NotBlank
-	@Size(min=5)
 	private String miniCurriculo;
 
 }

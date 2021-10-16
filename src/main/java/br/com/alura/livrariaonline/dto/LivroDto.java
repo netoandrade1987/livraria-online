@@ -36,19 +36,13 @@ public  class LivroDto {
 	
 	private Long id;
 	
-	@NotBlank
-	@Size(min=10)
 	private String titulo;
 	
-	@PastOrPresent
 	private LocalDate dataLancamento;
 	
-	@Positive
 	private Integer numeroPaginas;
 	
-	
-//	private AutorDto autorDto;
-	
+	//	private AutorDto autorDto;
 	
 	private Long  autorId;
 	

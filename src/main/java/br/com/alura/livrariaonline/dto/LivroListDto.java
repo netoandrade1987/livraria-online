@@ -11,16 +11,11 @@ public class LivroListDto {
 	
 	private Long id;
 	
-	@NotBlank
-	@Size(min=10)
 	private String titulo;
 	
-	@PastOrPresent
 	private LocalDate dataLancamento;
 	
-	@Positive
 	private Integer numeroPaginas;
-	
 	
 	private Long autor;
 
