@@ -1,9 +1,5 @@
 package br.com.alura.livrariaonline.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -14,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.livrariaonline.dto.LivroDto;
 import br.com.alura.livrariaonline.dto.LivroFormDto;
+import br.com.alura.livrariaonline.modelo.Autor;
 import br.com.alura.livrariaonline.modelo.Livro;
+import br.com.alura.livrariaonline.repository.AutorRepository;
 import br.com.alura.livrariaonline.repository.LivroRepository;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Neto Andrade
@@ -26,11 +26,17 @@ import br.com.alura.livrariaonline.repository.LivroRepository;
  *
  */
 
+@Getter
+@Setter
 @Service
 public class LivroService {
 
 	@Autowired
 	private LivroRepository livroRepository;
+	
+	@Autowired
+	private AutorRepository autorRepository;
+	
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public Page<LivroDto> listar(Pageable paginacao) {
@@ -44,11 +50,17 @@ public class LivroService {
 	@Transactional
 	public LivroDto cadastrar(LivroFormDto livroFormDto) {
 
-		Livro livro = modelMapper.map(livroFormDto, Livro.class);
+//		Livro livro = modelMapper.map(livroFormDto, Livro.class);
+//		return modelMapper.map(livroRepository.save(livro), LivroDto.class);
 		
-	//	livro.setId(null);
+		Livro livro = modelMapper.map(livroFormDto, Livro.class);
+		Autor autor = autorRepository.getById(livroFormDto.getAutorId());
+		
+		livro.setId(null);
+		livro.setAutor(autor);
 		
 		return modelMapper.map(livroRepository.save(livro), LivroDto.class);
+		
 		
 	}
 

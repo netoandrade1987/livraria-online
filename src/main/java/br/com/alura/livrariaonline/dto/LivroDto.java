@@ -9,6 +9,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.alura.livrariaonline.modelo.Autor;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,6 @@ import lombok.Setter;
  *
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public  class LivroDto {
@@ -38,13 +37,14 @@ public  class LivroDto {
 	
 	private String titulo;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataLancamento;
 	
 	private Integer numeroPaginas;
 	
-	//	private AutorDto autorDto;
+	private AutorDto autor;
 	
-	private Long  autorId;
+	//private Long  autorId;
 	
 
 		

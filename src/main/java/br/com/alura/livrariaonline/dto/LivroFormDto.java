@@ -10,6 +10,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +31,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class LivroFormDto {
 	
 
@@ -41,6 +40,8 @@ public class LivroFormDto {
 	@Size(min=10, max=255)
 	private String titulo;
 	
+	@NotNull
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@PastOrPresent
 	private LocalDate dataLancamento;
 	
