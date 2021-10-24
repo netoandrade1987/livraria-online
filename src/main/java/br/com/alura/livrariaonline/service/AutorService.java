@@ -32,28 +32,26 @@ public class AutorService {
 	private ModelMapper modelMapper = new ModelMapper();
 	
 	
-	public Page<AutorDto> listar(Pageable paginacao){
-		
-		Page<Autor> autores = autorRepository.findAll(paginacao);
-		
-		return autores.map(autor -> modelMapper.map(autor, AutorDto.class));
-		
-		
-	}
+		public Page<AutorDto> listar(Pageable paginacao){
+			
+			Page<Autor> autores = autorRepository.findAll(paginacao);
+			
+			return autores.map(autor -> modelMapper.map(autor, AutorDto.class));
+			
+			
+		}
 	
-	@Transactional
-	public AutorDto cadastrar(AutorFormDto autorFormDto) {
-		
-		Autor autor = modelMapper.map(autorFormDto, Autor.class);
-		
-		//autor.setId(null);
-		
-		autorRepository.save(autor);
-		
-		return modelMapper.map(autor, AutorDto.class);
-		
-		
-	}
+		@Transactional
+		public AutorDto cadastrar(AutorFormDto autorFormDto) {
+			
+			Autor autor = modelMapper.map(autorFormDto, Autor.class);
+			
+			//autor.setId(null);
+				
+			return modelMapper.map(autorRepository.save(autor), AutorDto.class);
+			
+			
+		}
 	
 	
 	

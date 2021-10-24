@@ -1,5 +1,6 @@
 package br.com.alura.livrariaonline.service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -50,16 +51,22 @@ public class LivroService {
 	@Transactional
 	public LivroDto cadastrar(LivroFormDto livroFormDto) {
 
-//		Livro livro = modelMapper.map(livroFormDto, Livro.class);
-//		return modelMapper.map(livroRepository.save(livro), LivroDto.class);
+
+		Long idAutor = livroFormDto.getAutorId();
 		
-		Livro livro = modelMapper.map(livroFormDto, Livro.class);
-		Autor autor = autorRepository.getById(livroFormDto.getAutorId());
-		
-		livro.setId(null);
-		livro.setAutor(autor);
-		
-		return modelMapper.map(livroRepository.save(livro), LivroDto.class);
+		try {
+			Autor autor = autorRepository.getById(idAutor);
+			Livro livro = modelMapper.map(livroFormDto, Livro.class);
+			livro.setId(null);
+			livro.setAutor(autor);
+			
+			livroRepository.save(livro);
+			
+			return modelMapper.map(livro, LivroDto.class);
+		} catch (EntityNotFoundException ex) {
+			
+			throw new IllegalArgumentException("Autor com ID: "+ idAutor +" Inexistente!");
+		}
 		
 		
 	}

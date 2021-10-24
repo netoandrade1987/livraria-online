@@ -5,6 +5,18 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 
+ * @author neto_
+ * 
+ * Classe para reprsentar mensagens de error. 
+ * Server Internal Errror.
+ * Status code 500. 
+ * 
+ *
+ */
+
+
 @AllArgsConstructor
 @Getter
 public class Error500Dto {

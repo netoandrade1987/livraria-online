@@ -31,13 +31,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LivroFormDto {
 	
 
 	private Long id;
 	
 	@NotBlank
-	@Size(min=10, max=255)
+	@Size(min=5, max=255)
 	private String titulo;
 	
 	@NotNull
@@ -52,5 +54,20 @@ public class LivroFormDto {
 	@NotNull
 	@JsonAlias("autor_id")
 	private Long  autorId;
+	
+
+	public LivroFormDto(@NotBlank @Size(min = 5, max = 255) String titulo,
+			@NotNull @PastOrPresent LocalDate dataLancamento, @Positive @Min(100) Integer numeroPaginas,
+			@NotNull Long autorId) {
+		
+		this.titulo = titulo;
+		this.dataLancamento = dataLancamento;
+		this.numeroPaginas = numeroPaginas;
+		this.autorId = autorId;
+	}
+	
+	
+	
+	
 
 }
