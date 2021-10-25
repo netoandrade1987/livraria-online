@@ -51,10 +51,17 @@ public class Livro {
 	@ManyToOne
 	@JoinColumn
 	private Autor autor;
+
+	public Livro(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Autor autor) {
+		
+		this.titulo = titulo;
+		this.dataLancamento = dataLancamento;
+		this.numeroPaginas = numeroPaginas;
+		this.autor = autor;
+	}
 	
-//	@ManyToOne
-//	@JoinColumn
-//	private Long  autorId;
+	
+	
 	
 	
 

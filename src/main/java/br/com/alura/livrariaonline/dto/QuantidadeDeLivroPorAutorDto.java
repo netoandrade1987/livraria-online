@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class QuantidadeDeLivroPorAutorDto {
 	
 	public String autor;
