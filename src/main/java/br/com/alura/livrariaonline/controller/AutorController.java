@@ -1,7 +1,6 @@
 package br.com.alura.livrariaonline.controller;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.alura.livrariaonline.dto.AutorFormDto;
 import br.com.alura.livrariaonline.dto.AutorDto;
+import br.com.alura.livrariaonline.dto.AutorFormDto;
 import br.com.alura.livrariaonline.service.AutorService;
 
 /**

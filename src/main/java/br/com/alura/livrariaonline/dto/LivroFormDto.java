@@ -17,57 +17,100 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
  * 
  * @author Neto Andrade
  * @version 1.0
  * 
- * Descrição: Essa classe modela um objeto do tipo LivroFormDto. 
- * Essa classe é utilizada no cadastro de livros, precisamos
- * cadastrar um objeto do tipo autor também.
+ *          Descrição: Essa classe modela um objeto do tipo LivroFormDto. Essa
+ *          classe é utilizada no cadastro de livros, precisamos cadastrar um
+ *          objeto do tipo autor também.
  *
  */
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class LivroFormDto {
-	
 
 	private Long id;
-	
+
 	@NotBlank
-	@Size(min=5, max=255)
+	@Size(min = 5, max = 255)
 	private String titulo;
-	
+
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@PastOrPresent
 	private LocalDate dataLancamento;
-	
+
 	@Positive
 	@Min(value = 100)
 	private Integer numeroPaginas;
-	
+
 	@NotNull
 	@JsonAlias("autor_id")
-	private Long  autorId;
-	
+	private Long autorId;
 
-	public LivroFormDto(@NotBlank @Size(min = 5, max = 255) String titulo,
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
+	}
+
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+	public Integer getNumeroPaginas() {
+		return numeroPaginas;
+	}
+
+	public void setNumeroPaginas(Integer numeroPaginas) {
+		this.numeroPaginas = numeroPaginas;
+	}
+
+	public Long getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(Long autorId) {
+		this.autorId = autorId;
+	}
+
+	public LivroFormDto(Long id, @NotBlank @Size(min = 5, max = 255) String titulo,
 			@NotNull @PastOrPresent LocalDate dataLancamento, @Positive @Min(100) Integer numeroPaginas,
 			@NotNull Long autorId) {
-		
+
+		this.id = id;
 		this.titulo = titulo;
 		this.dataLancamento = dataLancamento;
 		this.numeroPaginas = numeroPaginas;
 		this.autorId = autorId;
 	}
-	
-	
-	
-	
+
+	public LivroFormDto() {
+	}
+
+	public LivroFormDto(@NotBlank @Size(min = 5, max = 255) String titulo,
+			@NotNull @PastOrPresent LocalDate dataLancamento, @Positive @Min(100) Integer numeroPaginas,
+			@NotNull Long autorId) {
+
+		this.titulo = titulo;
+		this.dataLancamento = dataLancamento;
+		this.numeroPaginas = numeroPaginas;
+		this.autorId = autorId;
+	}
 
 }

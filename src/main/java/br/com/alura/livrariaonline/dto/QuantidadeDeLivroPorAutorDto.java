@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class QuantidadeDeLivroPorAutorDto {
 	
 	public String autor;
@@ -15,7 +16,4 @@ public class QuantidadeDeLivroPorAutorDto {
 	public Double percentual;
 	
 	
-	
-	
-
 }
