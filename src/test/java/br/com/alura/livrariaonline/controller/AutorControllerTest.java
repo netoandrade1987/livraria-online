@@ -20,13 +20,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @Transactional
-class LivroControllerTest {
+class AutorControllerTest {
 	
 	@Autowired
 	private MockMvc mvc;
 	
 	@Test
-	void naoDeveriaCadastrarUmLivroComDadosIncompletos() throws Exception {
+	void naoDeveriaCadastrarUmAutorComDadosIncompletos() throws Exception {
 		
 		String json = "{}";
 		
@@ -43,7 +43,7 @@ class LivroControllerTest {
 	
 	
 	@Test
-	void deveriaCadastrarUmLivroComasInformacoesCompletas() throws Exception {
+	void deveriaCadastrarUmAutorComasInformacoesCompletas() throws Exception {
 		
 		String autorJson = "{ \"nome\" : \"Joao da Silva\", \"email\" : \"teste@teste\", "
 				+ "\"dataNascimento\" : \"01/12/1957\", \"miniCurriculo\"  : \"html css javascript PHP\"}";
@@ -56,25 +56,7 @@ class LivroControllerTest {
 				.andExpect(MockMvcResultMatchers.header().exists("Location"))
 				.andExpect(MockMvcResultMatchers.content().json(autorJson));
 		
-		System.out.println("Autor Cadastrado");
-		
-		System.out.println("=====");
-		
-		
-		String livroJson = "{ \"titulo\" : \"Java Spring Boot\", \"dataLancamento\" : "
-				+ "\"10/10/2010\", \"numeroPaginas\" : \"150\", \"autor_id\"  : \"1\"}";
-		
-		mvc.perform(
-				MockMvcRequestBuilders.post("/livros")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(livroJson))
-				.andExpect(MockMvcResultMatchers.status().isCreated())
-				.andExpect(MockMvcResultMatchers.header().exists("Location"));
-//				.andExpect(MockMvcResultMatchers.content().json(livroJson));
-		
-		System.out.println("Livro Cadastrado");
-		
-		System.out.println("=====");
+		System.out.println("Autor Cadastrado com sucesso!!");
 		
 		
 	}

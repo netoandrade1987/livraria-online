@@ -33,7 +33,7 @@ class LivroRepositoryTest {
 	
 
 	@Test
-	void deveriaRetornarUmRelatorioDaQuantidadeDeLivrosPunlicadosPorAutorESeuPercentual() {
+	void deveriaRetornarUmRelatorioDaQuantidadeDeLivrosPublicadosPorAutorESeuPercentual() {
 		
 		
 		Autor a1 = new Autor(

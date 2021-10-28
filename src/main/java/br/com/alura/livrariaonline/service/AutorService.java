@@ -1,6 +1,8 @@
 package br.com.alura.livrariaonline.service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.alura.livrariaonline.dto.AtualizaAutorFormDto;
 import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
 import br.com.alura.livrariaonline.modelo.Autor;
@@ -32,6 +35,12 @@ public class AutorService {
 	private ModelMapper modelMapper = new ModelMapper();
 	
 	
+	
+	/**
+	 * Método que lista dos os registros com paginação
+	 * 
+	 */
+	
 		public Page<AutorDto> listar(Pageable paginacao){
 			
 			Page<Autor> autores = autorRepository.findAll(paginacao);
@@ -54,6 +63,54 @@ public class AutorService {
 			
 			
 		}
+
+		@Transactional
+		public AutorDto atualizar(AtualizaAutorFormDto dto) {
+			
+			//Autor autor = autorRepository.getById(dto.getId());
+						 
+			
+				Autor autor = autorRepository.findById(dto.getId())
+						.orElseThrow( () -> new EntityNotFoundException());
+				
+				autor.atualizaDadosDoAutor(dto.getNome(), dto.getEmail(), dto.getDataNascimento(), dto.getMiniCurriculo());
+				
+				return modelMapper.map(autor, AutorDto.class);
+				
+		}
+
+		@Transactional
+		public void remover(@NotNull Long id) {
+			
+			
+				Autor autor = autorRepository.findById(id)
+						.orElseThrow( () -> new EntityNotFoundException());
+				
+				autorRepository.deleteById(autor.getId());
+				
+		
+		}
+
+		public AutorDto detalhar(Long id) {
+
+//			Autor autor = autorRepository. getById(id);
+			
+
+				Autor autor = autorRepository.findById(id)
+						.orElseThrow( () -> new EntityNotFoundException());
+				
+				return modelMapper.map(autor, AutorDto.class);
+				
+				
+			
+			
+			
+			
+			
+		}
+		
+		
+		
 	
 	
 	
