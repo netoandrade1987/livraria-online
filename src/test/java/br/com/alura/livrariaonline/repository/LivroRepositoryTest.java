@@ -33,7 +33,7 @@ class LivroRepositoryTest {
 	
 
 	@Test
-	void deveriaRetornarRelatorioDeLivrosPorAutor() {
+	void deveriaRetornarUmRelatorioDaQuantidadeDeLivrosPunlicadosPorAutorESeuPercentual() {
 		
 		
 		Autor a1 = new Autor(
@@ -90,8 +90,6 @@ class LivroRepositoryTest {
 				);
 		
 		em.persist(a5);
-		
-//		Livro(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Autor autor)
 		
 		Livro l1 = new Livro(
 				"Aprenda Java em 21 dias",

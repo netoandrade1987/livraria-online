@@ -48,7 +48,9 @@ public class AutorService {
 			
 			//autor.setId(null);
 				
-			return modelMapper.map(autorRepository.save(autor), AutorDto.class);
+			autorRepository.save(autor);
+			
+			return modelMapper.map(autor, AutorDto.class);
 			
 			
 		}

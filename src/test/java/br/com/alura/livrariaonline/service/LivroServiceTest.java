@@ -46,6 +46,8 @@ class LivroServiceTest {
 		
 		LivroDto dto = service.cadastrar(lvFormDtoDto);
 		
+		Mockito.verify(livrorepository).save(Mockito.any());
+		
 		assertEquals(lvFormDtoDto.getTitulo(), dto.getTitulo());
 		assertEquals(lvFormDtoDto.getDataLancamento(), dto.getDataLancamento());
 		assertEquals(lvFormDtoDto.getNumeroPaginas(), dto.getNumeroPaginas());
