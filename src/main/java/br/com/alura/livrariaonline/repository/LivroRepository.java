@@ -2,6 +2,8 @@ package br.com.alura.livrariaonline.repository;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,6 +21,8 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 			+ "JOIN l.autor a "
 			+ "group by a.nome")
 	List<QuantidadeDeLivroPorAutorDto> quantidadeDeLivroPorAutorDto();
+
+	 boolean existsByAutorId(Long id);
 
 	
 

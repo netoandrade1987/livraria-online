@@ -15,6 +15,7 @@ import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
 import br.com.alura.livrariaonline.modelo.Autor;
 import br.com.alura.livrariaonline.repository.AutorRepository;
+import br.com.alura.livrariaonline.repository.LivroRepository;
 
 
 /**
@@ -31,6 +32,9 @@ public class AutorService {
 	
 	@Autowired
 	private AutorRepository  autorRepository;
+	
+	@Autowired
+	private LivroRepository livroRepository;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
@@ -67,34 +71,36 @@ public class AutorService {
 		@Transactional
 		public AutorDto atualizar(AtualizaAutorFormDto dto) {
 			
-			//Autor autor = autorRepository.getById(dto.getId());
-						 
 			
 				Autor autor = autorRepository.findById(dto.getId())
 						.orElseThrow( () -> new EntityNotFoundException());
 				
-				autor.atualizaDadosDoAutor(dto.getNome(), dto.getEmail(), dto.getDataNascimento(), dto.getMiniCurriculo());
+				autor.atualizaDadosDoAutor(dto.getNome(), dto.getEmail(), dto.getDataNascimento(),
+						
+						dto.getMiniCurriculo());
 				
 				return modelMapper.map(autor, AutorDto.class);
 				
 		}
 
 		@Transactional
-		public void remover(@NotNull Long id) {
+		public void remover( Long id) {
 			
+			boolean LivroCadastrado = livroRepository.existsByAutorId(id);
 			
-				Autor autor = autorRepository.findById(id)
-						.orElseThrow( () -> new EntityNotFoundException());
+			if (LivroCadastrado) {
 				
-				autorRepository.deleteById(autor.getId());
+				 throw new IllegalArgumentException("Autor não pode ser removido.");
 				
-		
+							
+			}
+			
+			this.autorRepository.deleteById(id);
+			
 		}
 
 		public AutorDto detalhar(Long id) {
 
-//			Autor autor = autorRepository. getById(id);
-			
 
 				Autor autor = autorRepository.findById(id)
 						.orElseThrow( () -> new EntityNotFoundException());

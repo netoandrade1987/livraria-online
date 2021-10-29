@@ -3,6 +3,7 @@ package br.com.alura.livrariaonline.service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,17 +77,60 @@ public class LivroService {
 		
 	}
 
+//	@Transactional
+//	public LivroDto atualizar(LivroFormDto dto) {
+//		
+//		Livro livro = livroRepository.findById(dto.getId())
+//				
+//				.orElseThrow(()-> new EntityNotFoundException());
+//		
+//		livro.atualizaDados(dto.getTitulo(), dto.getDataLancamento(), dto.getNumeroPaginas(), dto.getAutorId());
+//		
+//		
+//		return modelMapper.map(livro, LivroDto.class);
+//	}
+	
 	@Transactional
 	public LivroDto atualizar(LivroFormDto dto) {
+		
+		Autor autor = autorRepository.findById(dto.getAutorId())
+				
+				.orElseThrow(()-> new EntityNotFoundException());
+		
 		
 		Livro livro = livroRepository.findById(dto.getId())
 				
 				.orElseThrow(()-> new EntityNotFoundException());
 		
-		livro.atualizaDados(dto.getTitulo(), dto.getDataLancamento(), dto.getNumeroPaginas(), dto.getAutorId());
+	
+		livro.atualizaDados(dto.getTitulo(), dto.getDataLancamento(), 
+					
+					dto.getNumeroPaginas(), autor);
+			
+			return modelMapper.map(livro, LivroDto.class);
+			
 		
+		}
+	
+	@Transactional
+	public void remover(Long id) {
 		
-		return modelMapper.map(livro, LivroDto.class);
+		livroRepository.deleteById(id);
+		
 	}
+
+	public LivroDto detalharLivro(Long id) {
+		
+		Livro livro = livroRepository.findById(id).
+				
+				orElseThrow(()-> new EntityNotFoundException());
+		
+			return modelMapper.map(livro,LivroDto.class);
+		
+		
+	}
+		
+		
+		
 
 }

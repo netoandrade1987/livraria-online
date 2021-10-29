@@ -60,12 +60,12 @@ public class Livro {
 	}
 	
 	
-	public void atualizaDados(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Long autorId) {
+	public void atualizaDados(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Autor autor) {
 		
 		this.titulo = titulo;
 		this.dataLancamento = dataLancamento;
 		this.numeroPaginas = numeroPaginas;
-		this.autor.setId(autorId);
+		this.autor=autor;
 		
 	}
 	

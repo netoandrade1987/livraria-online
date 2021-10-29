@@ -13,6 +13,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException.Forbidden;
+import org.springframework.web.client.HttpClientErrorException.MethodNotAllowed;
 
 import br.com.alura.livrariaonline.dto.Error400Dto;
 import br.com.alura.livrariaonline.dto.Error500Dto;
@@ -53,6 +55,14 @@ public class TratamentoDeErrosController {
 	@ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class})
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public void tratarError404(Exception ex,  HttpServletRequest req) {
+		
+			
+	}
+	
+	
+	@ExceptionHandler(Forbidden.class)
+	@ResponseStatus(code = HttpStatus.FORBIDDEN)
+	public void tratarError403(Exception ex,  HttpServletRequest req) {
 		
 		
 			
