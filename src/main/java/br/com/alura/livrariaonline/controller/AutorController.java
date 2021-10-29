@@ -40,6 +40,8 @@ public class AutorController {
 
 	@Autowired
 	private AutorService autorService;
+	
+	
 
 	@GetMapping
 	public Page<AutorDto> Listar(Pageable paginacao) {
@@ -47,6 +49,8 @@ public class AutorController {
 		return autorService.listar(paginacao);
 
 	}
+	
+	
 
 	@PostMapping
 	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorFormDto autorFormDto, UriComponentsBuilder uriBuilder) {

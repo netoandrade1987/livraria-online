@@ -46,6 +46,7 @@ public class Livro {
 	@Column(name = "numeroPaginas")
 	private Integer numeroPaginas;
 	
+	
 	@ManyToOne
 	@JoinColumn
 	private Autor autor;
@@ -56,6 +57,16 @@ public class Livro {
 		this.dataLancamento = dataLancamento;
 		this.numeroPaginas = numeroPaginas;
 		this.autor = autor;
+	}
+	
+	
+	public void atualizaDados(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Long autorId) {
+		
+		this.titulo = titulo;
+		this.dataLancamento = dataLancamento;
+		this.numeroPaginas = numeroPaginas;
+		this.autor.setId(autorId);
+		
 	}
 	
 	

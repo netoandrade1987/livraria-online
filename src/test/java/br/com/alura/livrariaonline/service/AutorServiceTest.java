@@ -19,9 +19,6 @@ import br.com.alura.livrariaonline.repository.AutorRepository;
 class AutorServiceTest {
 
 	
-
-	
-	
 	@Mock
 	private AutorRepository repository;
 	

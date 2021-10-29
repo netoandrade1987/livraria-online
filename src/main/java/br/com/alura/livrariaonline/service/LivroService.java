@@ -2,6 +2,7 @@ package br.com.alura.livrariaonline.service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class LivroService {
 	private AutorRepository autorRepository;
 	
 	private ModelMapper modelMapper = new ModelMapper();
+	
+	
+	
+	
 
 	public Page<LivroDto> listar(Pageable paginacao) {
 		
@@ -69,6 +74,19 @@ public class LivroService {
 		}
 		
 		
+	}
+
+	@Transactional
+	public LivroDto atualizar(LivroFormDto dto) {
+		
+		Livro livro = livroRepository.findById(dto.getId())
+				
+				.orElseThrow(()-> new EntityNotFoundException());
+		
+		livro.atualizaDados(dto.getTitulo(), dto.getDataLancamento(), dto.getNumeroPaginas(), dto.getAutorId());
+		
+		
+		return modelMapper.map(livro, LivroDto.class);
 	}
 
 }
