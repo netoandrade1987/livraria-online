@@ -18,6 +18,9 @@ import org.springframework.web.client.HttpClientErrorException.MethodNotAllowed;
 
 import br.com.alura.livrariaonline.dto.Error400Dto;
 import br.com.alura.livrariaonline.dto.Error500Dto;
+import br.com.alura.livrariaonline.dto.ExclusaoNaoPermitidaDto;
+import br.com.alura.livrariaonline.dto.RecursoNaoEncontradoDto;
+import br.com.alura.livrariaonline.error.RegraDeNegocioException;
 
 @RestControllerAdvice
 public class TratamentoDeErrosController {
@@ -50,25 +53,37 @@ public class TratamentoDeErrosController {
 		
 	}
 	
-	
-	
 	@ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class})
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public void tratarError404(Exception ex,  HttpServletRequest req) {
+	public RecursoNaoEncontradoDto tratarError404(Exception ex,  HttpServletRequest req) {
 		
+		
+		return  new RecursoNaoEncontradoDto(
+				
+				LocalDateTime.now(),
+				ex.getClass().toString(),
+				ex.getMessage(),
+				req.getRequestURI()
+				
+				);
 			
 	}
 	
 	
-	@ExceptionHandler(Forbidden.class)
-	@ResponseStatus(code = HttpStatus.FORBIDDEN)
-	public void tratarError403(Exception ex,  HttpServletRequest req) {
+	@ExceptionHandler(RegraDeNegocioException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ExclusaoNaoPermitidaDto TratarErrorExclusaoNaoPermitida(Exception ex,  HttpServletRequest req) {
 		
-		
+		return  new ExclusaoNaoPermitidaDto(
+				
+				LocalDateTime.now(),
+				ex.getClass().toString(),
+				ex.getMessage(),
+				req.getRequestURI()
+				
+				);
 			
 	}
-	
-	
 	
 
 }

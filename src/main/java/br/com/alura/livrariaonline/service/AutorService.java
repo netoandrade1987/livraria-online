@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.alura.livrariaonline.dto.AtualizaAutorFormDto;
 import br.com.alura.livrariaonline.dto.AutorDto;
 import br.com.alura.livrariaonline.dto.AutorFormDto;
+import br.com.alura.livrariaonline.error.RegraDeNegocioException;
 import br.com.alura.livrariaonline.modelo.Autor;
 import br.com.alura.livrariaonline.repository.AutorRepository;
 import br.com.alura.livrariaonline.repository.LivroRepository;
@@ -90,9 +91,8 @@ public class AutorService {
 			
 			if (LivroCadastrado) {
 				
-				 throw new IllegalArgumentException("Autor não pode ser removido.");
-				
-							
+				 throw new RegraDeNegocioException("Autor não pode ser removido. O Mesmo possui livros cadastrados.");
+											
 			}
 			
 			this.autorRepository.deleteById(id);
