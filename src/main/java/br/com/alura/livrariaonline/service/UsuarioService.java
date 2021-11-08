@@ -23,7 +23,8 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	private ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private ModelMapper modelMapper; 
 	
 
 	public Page<UsuarioDto> listar(Pageable paginacao) {

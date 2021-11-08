@@ -1,10 +1,15 @@
 package br.com.alura.livrariaonline.modelo;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +25,7 @@ import lombok.ToString;
 @ToString(exclude = {"senha"})
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements UserDetails{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +41,10 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-/*
-	//Para perfil de acesso
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -48,14 +52,14 @@ public class Usuario {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return this.senha;
+		return senha;
 	}
 
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.login;
+		return login;
 	}
 
 
@@ -85,10 +89,7 @@ public class Usuario {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
-	*/
-	
+
 	
 
 }
