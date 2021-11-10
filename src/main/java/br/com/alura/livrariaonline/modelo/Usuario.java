@@ -52,14 +52,14 @@ public class Usuario implements UserDetails{
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return senha;
+		return this.senha;
 	}
 
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return login;
+		return this.login;
 	}
 
 

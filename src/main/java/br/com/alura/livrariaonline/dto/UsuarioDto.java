@@ -14,13 +14,9 @@ import lombok.ToString;
 @NoArgsConstructor
 public @Data class UsuarioDto {
 
-	@Positive
-	@NotNull
+
 	private Long id;	
-	
-	@NotBlank
 	private String nome;
-	@NotBlank
 	private String login;
 
 }

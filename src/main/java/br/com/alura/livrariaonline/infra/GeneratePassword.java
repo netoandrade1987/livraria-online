@@ -7,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class GeneratePassword {
-	
-	@Autowired
-	private static BCryptPasswordEncoder encoder;
+
+//	@Autowired
+//	private BCryptPasswordEncoder encoder;
 
 	public static String generatePass() {
 
 		String pass = new Random().nextInt(999999) + "";
 
-		String passEncoder = encoder.encode(pass);
-		
-		return passEncoder;
+		return pass;
 	}
 
 }

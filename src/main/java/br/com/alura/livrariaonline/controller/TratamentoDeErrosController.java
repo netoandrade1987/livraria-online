@@ -39,7 +39,7 @@ public class TratamentoDeErrosController {
 	
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-	public Error500Dto tratarError400(Exception ex,  HttpServletRequest req) {
+	public Error500Dto tratarError500(Exception ex,  HttpServletRequest req) {
 		
 		
 		return  new Error500Dto(
@@ -49,7 +49,9 @@ public class TratamentoDeErrosController {
 				ex.getMessage(),
 				req.getRequestURI()
 				
+				
 				);
+		
 		
 	}
 	
@@ -68,6 +70,8 @@ public class TratamentoDeErrosController {
 				);
 			
 	}
+	
+	
 	
 	
 	@ExceptionHandler(RegraDeNegocioException.class)
