@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.livrariaonline.dto.LoginFormDto;
+import br.com.alura.livrariaonline.dto.TokenDto;
 import br.com.alura.livrariaonline.infra.security.AutenticacaoService;
 
 @RestController
@@ -20,14 +21,14 @@ public class AutenticacaoController {
 	
 	
 	@PostMapping
-	public String autenticar(@RequestBody @Valid LoginFormDto dto) {
+	public TokenDto autenticar(@RequestBody @Valid LoginFormDto dto) {
 		
 		//autenticar - verificar se está valido no banco
 		//gerar o token
 		//retorna o token
 		
 		
-		return service.autenticar(dto);
+		return  new TokenDto (service.autenticar(dto));
 		
 		
 		

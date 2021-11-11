@@ -44,7 +44,7 @@ public class AutenticacaoService implements UserDetailsService {
 				dto.getSenha()
 				
 				);
-		authenticationManager.authenticate(authentication);
+		authentication = authenticationManager.authenticate(authentication);
 		
 		return tokenService.gerarToken(authentication);
 	}

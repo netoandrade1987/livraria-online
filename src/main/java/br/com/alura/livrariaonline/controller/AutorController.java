@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,13 +45,11 @@ public class AutorController {
 	
 
 	@GetMapping
-	public Page<AutorDto> Listar(Pageable paginacao) {
+	public Page<AutorDto> Listar(@PageableDefault(size=10) Pageable paginacao) {
 
 		return autorService.listar(paginacao);
 
 	}
-	
-	
 
 	@PostMapping
 	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorFormDto autorFormDto, UriComponentsBuilder uriBuilder) {
