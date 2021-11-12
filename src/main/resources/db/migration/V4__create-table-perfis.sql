@@ -1,6 +1,6 @@
 CREATE TABLE perfis (
   id bigint NOT NULL AUTO_INCREMENT primary key,
-  nome varchar(100) not NULL,
+  nome varchar(100) not NULL
 );
 
 
@@ -11,7 +11,7 @@ CREATE TABLE perfis_usuarios (
 	
 	primary key (usuario_id, perfil_id),
 	foreign key (usuario_id) references usuarios(id),
-	foreign key (perfil_id) references perfils(id)
+	foreign key (perfil_id) references perfis(id)
 	
 );
 

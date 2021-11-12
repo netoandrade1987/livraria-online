@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -39,7 +40,9 @@ public class Usuario implements UserDetails{
 	private String senha;
 	
 	@ManyToMany
-	@JoinTable
+	@JoinTable(name = "perfis_usuarios",
+		joinColumns=@JoinColumn(name="usuario_id"),
+		inverseJoinColumns = @JoinColumn(name="perfil_id"))
 	private List<Perfil> perfis  = new ArrayList<Perfil>();
 	
 	

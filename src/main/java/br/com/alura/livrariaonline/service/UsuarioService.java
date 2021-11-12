@@ -49,7 +49,7 @@ public class UsuarioService {
 
 		Usuario usuario = modelMapper.map(usuarioFormDto, Usuario.class);
 		
-		Perfil perfil = PerfilRepository.getById(usuarioFormDto.getPerfilID());
+		Perfil perfil = PerfilRepository.getById(usuarioFormDto.getPerfilId());
 		
 		usuario.addPerfil(perfil);
 		

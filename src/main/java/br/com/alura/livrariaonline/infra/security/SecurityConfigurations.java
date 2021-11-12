@@ -41,9 +41,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		auth.userDetailsService(autenticacaoService)
-		.passwordEncoder(passEncoder)	
-		
-		;
+		.passwordEncoder(passEncoder);
 		
 	}
 	
@@ -76,8 +74,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
                 "/configuration/security",
                 "/swagger-ui.html",
                 "/webjars/**");
-		
-		
 		
 	}
 	
