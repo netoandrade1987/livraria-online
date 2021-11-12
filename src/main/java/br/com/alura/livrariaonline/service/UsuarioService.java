@@ -15,7 +15,9 @@ import br.com.alura.livrariaonline.dto.AtualizaUsuarioFormDto;
 import br.com.alura.livrariaonline.dto.UsuarioDto;
 import br.com.alura.livrariaonline.dto.UsuarioFormDto;
 import br.com.alura.livrariaonline.infra.GeneratePassword;
+import br.com.alura.livrariaonline.modelo.Perfil;
 import br.com.alura.livrariaonline.modelo.Usuario;
+import br.com.alura.livrariaonline.repository.PerfilRepository;
 import br.com.alura.livrariaonline.repository.UsuarioRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private PerfilRepository PerfilRepository;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -43,6 +48,10 @@ public class UsuarioService {
 	public UsuarioDto cadastrar(UsuarioFormDto usuarioFormDto) {
 
 		Usuario usuario = modelMapper.map(usuarioFormDto, Usuario.class);
+		
+		Perfil perfil = PerfilRepository.getById(usuarioFormDto.getPerfilID());
+		
+		usuario.addPerfil(perfil);
 		
 		usuario.setSenha(passEncoder.encode(GeneratePassword.generatePass()));
 		

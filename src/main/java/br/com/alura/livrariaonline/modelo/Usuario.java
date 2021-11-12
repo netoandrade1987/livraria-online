@@ -1,11 +1,15 @@
 package br.com.alura.livrariaonline.modelo;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -34,6 +38,10 @@ public class Usuario implements UserDetails{
 	private String login;
 	private String senha;
 	
+	@ManyToMany
+	@JoinTable
+	private List<Perfil> perfis  = new ArrayList<Perfil>();
+	
 	
 	public Usuario(String nome, String login, String senha) {
 		this.nome = nome;
@@ -44,8 +52,8 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return this.perfis;
 	}
 
 
@@ -88,6 +96,13 @@ public class Usuario implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+
+	public void addPerfil(Perfil perfil) {
+		
+		this.perfis.add(perfil);
+		
 	}
 
 	
