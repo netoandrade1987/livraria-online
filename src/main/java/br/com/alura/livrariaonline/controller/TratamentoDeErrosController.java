@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException.Forbidden;
-import org.springframework.web.client.HttpClientErrorException.MethodNotAllowed;
 
 import br.com.alura.livrariaonline.dto.Error400Dto;
 import br.com.alura.livrariaonline.dto.Error500Dto;
@@ -89,5 +88,15 @@ public class TratamentoDeErrosController {
 			
 	}
 	
+	
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	@ResponseStatus(code = HttpStatus.FORBIDDEN)
+	public String tratarError403(AccessDeniedException ex) {
+		
+				
+		return  ex.getMessage();
 
+	}
+	
 }
