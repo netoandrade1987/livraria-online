@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.alura.livrariaonline</groupId>
 	<artifactId>livraria-online</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>livraria-online</name>
 	<description>Livraria On Line</description>
 	<properties>
