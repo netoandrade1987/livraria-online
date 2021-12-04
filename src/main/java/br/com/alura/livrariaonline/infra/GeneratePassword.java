@@ -13,9 +13,11 @@ public class GeneratePassword {
 
 	public static String generatePass() {
 
-		String pass = new Random().nextInt(999999) + "";
+	//	String pass = new Random().nextInt(999999) + "";
+		
+		//System.out.println(pass);
 
-		return pass;
+		return "123456";
 	}
 
 }

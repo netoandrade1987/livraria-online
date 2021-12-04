@@ -1,5 +1,7 @@
 package br.com.alura.livrariaonline.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -53,7 +55,12 @@ public class UsuarioService {
 		
 		usuario.addPerfil(perfil);
 		
-		usuario.setSenha(passEncoder.encode(GeneratePassword.generatePass()));
+		String pass = GeneratePassword.generatePass();
+		
+		System.out.println("A senha é: "+pass);
+		
+		
+		usuario.setSenha(passEncoder.encode(pass));
 		
 		usuario.setId(null);
 		

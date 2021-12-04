@@ -161,11 +161,11 @@ class LivroRepositoryTest {
 				QuantidadeDeLivroPorAutorDto::getQuantidade,
 				QuantidadeDeLivroPorAutorDto::getPercentual
 				).containsExactlyInAnyOrder(
-						Assertions.tuple("Andre da Silva",2L,28.57143),
-						Assertions.tuple("Fernanda Nogueira",2L,28.57143),
-						Assertions.tuple("Juliana Carvalho",1L,14.28571),
-						Assertions.tuple("Rita de Assis",1L,14.28571),
-						Assertions.tuple("Rodrigo de Souza",1L,14.28571)
+						Assertions.tuple("Andre da Silva",2L,28.571428571428573),
+						Assertions.tuple("Fernanda Nogueira",2L,28.571428571428573),
+						Assertions.tuple("Juliana Carvalho",1L,14.285714285714286),
+						Assertions.tuple("Rita de Assis",1L,14.285714285714286),
+						Assertions.tuple("Rodrigo de Souza",1L,14.285714285714286)
 						
 						);
 		

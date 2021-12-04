@@ -29,7 +29,7 @@ import br.com.alura.livrariaonline.repository.UsuarioRepository;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @Transactional
-class LivroControllerTest {
+public class UsuarioControllerTest {
 	
 	@Autowired
 	private MockMvc mvc;
@@ -66,17 +66,18 @@ class LivroControllerTest {
 	
 	
 	@Test
-	void naoDeveriaCadastrarUmLivroComDadosIncompletos() throws Exception {
+	void naoDeveriaCadastrarUmUsuarioComDadosIncompletos() throws Exception {
 		
-		String json = "{}";
-		
+		String usuarioJson = "{}";
 		
 		mvc.perform(MockMvcRequestBuilders
 				
-				.post("/livros")
+				.post("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(json)
-				.header("Authorization", "Bearer "+token))
+				.content(usuarioJson)
+				.header("Authorization", "Bearer "+token)
+				
+				)
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 		
 		
@@ -84,47 +85,31 @@ class LivroControllerTest {
 	
 	
 	@Test
-	void deveriaCadastrarUmLivroComInformacoesCompletas() throws Exception {
+	void DeveriaCadastrarUmUsuarioComDadosCompletos() throws Exception {
 		
-		String autorJson = "{ \"nome\" : \"Joao da Silva\", \"email\" : \"teste@teste\", "
-				+ "\"dataNascimento\" : \"01/12/1957\", \"miniCurriculo\"  : \"html css javascript PHP\"}";
+		String json = "{ \"nome\" : \"Jose Silva\", \"login\" : \"josesilva\", \"perfilId\" : 1}";
 		
-		mvc.perform(
-				MockMvcRequestBuilders.post("/autores")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(autorJson)
-				.header("Authorization", "Bearer "+token))
-				.andExpect(MockMvcResultMatchers.status().isCreated())
-				.andExpect(MockMvcResultMatchers.header().exists("Location"))
-				.andExpect(MockMvcResultMatchers.content().json(autorJson));
-		
-		System.out.println("Autor Cadastrado");
-		
-		System.out.println("=====");
-		
-		
-		String livroJson = "{ \"titulo\" : \"Java Spring Boot\", \"dataLancamento\" : \"10/10/2010\", \"numeroPaginas\" : 150, \"autor_id\"  : 2}";
-						
-		String livroRetorno = "{\"id\":1,\"titulo\":\"Java Spring Boot\",\"dataLancamento\":\"10/10/2010\",\"numeroPaginas\":150, "
-				
-				+ "\"autor\":{\"id\":2,\"nome\":\"Joao da Silva\",\"email\":\"teste@teste\",\"dataNascimento\":\"01/12/1957\","
-				+" \"miniCurriculo\":\"html css javascript PHP\"}}";
+		String usuarioCadastrado = "{ \"nome\" : \"Jose Silva\", \"login\" : \"josesilva\"}";
 		
 		mvc.perform(
-				MockMvcRequestBuilders.post("/livros")
+				MockMvcRequestBuilders.post("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(livroJson)	
-				.header("Authorization", "Bearer "+token))
+				.content(json)
+				.header("Authorization", "Bearer "+token)
+				)
 				.andExpect(MockMvcResultMatchers.status().isCreated())
 				.andExpect(MockMvcResultMatchers.header().exists("Location"))
-				.andExpect(MockMvcResultMatchers.content().json(livroRetorno));
+				.andExpect(MockMvcResultMatchers.content().json(usuarioCadastrado));
 		
-		System.out.println("Livro Cadastrado");
-		
-		System.out.println("=====");
+		System.out.println("Usuário Cadastrado com sucesso!!");
 		
 		
 	}
+	
+	
+	
+	
+	
 	
 
 }
