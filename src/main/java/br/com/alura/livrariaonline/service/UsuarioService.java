@@ -2,6 +2,7 @@ package br.com.alura.livrariaonline.service;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -14,9 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.livrariaonline.dto.AtualizaUsuarioFormDto;
+import br.com.alura.livrariaonline.dto.LivroDto;
 import br.com.alura.livrariaonline.dto.UsuarioDto;
 import br.com.alura.livrariaonline.dto.UsuarioFormDto;
 import br.com.alura.livrariaonline.infra.GeneratePassword;
+import br.com.alura.livrariaonline.modelo.Autor;
+import br.com.alura.livrariaonline.modelo.Livro;
 import br.com.alura.livrariaonline.modelo.Perfil;
 import br.com.alura.livrariaonline.modelo.Usuario;
 import br.com.alura.livrariaonline.repository.PerfilRepository;
@@ -31,11 +35,10 @@ public class UsuarioService {
 	@Autowired
 	private PerfilRepository PerfilRepository;
 	
-	@Autowired
-	BCryptPasswordEncoder passEncoder;
 	
-	@Autowired
-	private ModelMapper modelMapper;
+	BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+	
+	private ModelMapper modelMapper = new ModelMapper();
 	
 
 	public Page<UsuarioDto> listar(Pageable paginacao) {
@@ -48,25 +51,48 @@ public class UsuarioService {
 
 	@Transactional
 	public UsuarioDto cadastrar(UsuarioFormDto usuarioFormDto) {
+		
+		
 
-		Usuario usuario = modelMapper.map(usuarioFormDto, Usuario.class);
+		try {
+			
+			Usuario usuario = modelMapper.map(usuarioFormDto, Usuario.class);
+			Perfil perfil = PerfilRepository.getById(usuarioFormDto.getPerfilId());
+			usuario.addPerfil(perfil);
+			
+			
+			String pass = GeneratePassword.generatePass();
+			System.out.println("A senha é: "+pass);
+			
+			
+			usuario.setSenha(passEncoder.encode(pass));
+			usuario.setId(null);
+			
+			usuarioRepository.save(usuario);
+			return modelMapper.map(usuario, UsuarioDto.class);
+			
+		} catch (EntityNotFoundException ex) {
+			
+			throw new IllegalArgumentException("Error ao cadastrar um Usuário");
+		}
 		
-		Perfil perfil = PerfilRepository.getById(usuarioFormDto.getPerfilId());
-		
-		usuario.addPerfil(perfil);
-		
-		String pass = GeneratePassword.generatePass();
-		
-		System.out.println("A senha é: "+pass);
 		
 		
-		usuario.setSenha(passEncoder.encode(pass));
 		
-		usuario.setId(null);
 		
-		usuarioRepository.save(usuario);
 		
-		return modelMapper.map(usuario, UsuarioDto.class);
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+
 
 	}
 

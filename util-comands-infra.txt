@@ -1,0 +1,9 @@
+mvn package
+
+mvn clean package
+
+mvn clean package -Dskiptests
+
+
+java -jar .\target\livraria-online-0.0.1.jar --spring.profiles.active=prod --spring.config.location=C:\Users\neto_\eclipse-workspace2\livraria-online\src\main\resources\
+
