@@ -1,3 +1,5 @@
+##Manver Comands##
+
 mvn package
 
 mvn clean package
@@ -6,4 +8,25 @@ mvn clean package -Dskiptests
 
 
 java -jar .\target\livraria-online-0.0.1.jar --spring.profiles.active=prod --spring.config.location=C:\Users\neto_\eclipse-workspace2\livraria-online\src\main\resources\
+
+
+
+##Docker comands##
+
+
+docker build -t alura/livraria-online . 
+
+
+docker image list
+
+docker run  -p8001:8001 alura/livraria-online
+
+docker-compose --version
+
+
+docker-compose up
+
+docker-compose down
+
+
 
