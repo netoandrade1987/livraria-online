@@ -48,10 +48,10 @@ jobs:
       - name: Gerar build
         run: mvn clean package -DskipTests
 
-#      - name: Deploy no heroku 
-#        uses: akhileshns/heroku-deploy@v3.12.12
-#        with:
-#          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-#          heroku_app_name: "floriano-livraria"
-#          heroku_email: "familianogutipvai@gmail.com"
-#          usedocker: true
+      - name: Deploy no heroku 
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "livraria-online-api"
+          heroku_email: "afnetoapp@gmail.com"
+          usedocker: true
