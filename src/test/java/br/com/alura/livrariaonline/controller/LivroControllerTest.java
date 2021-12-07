@@ -103,11 +103,11 @@ class LivroControllerTest {
 		System.out.println("=====");
 		
 		
-		String livroJson = "{ \"titulo\" : \"Java Spring Boot\", \"dataLancamento\" : \"10/10/2010\", \"numeroPaginas\" : 150, \"autor_id\"  : 1}";
+		String livroJson = "{ \"titulo\" : \"Java Spring Boot\", \"dataLancamento\" : \"10/10/2010\", \"numeroPaginas\" : 150, \"autor_id\"  : 2}";
 						
 		String livroRetorno = "{\"id\":1,\"titulo\":\"Java Spring Boot\",\"dataLancamento\":\"10/10/2010\",\"numeroPaginas\":150, "
 				
-				+ "\"autor\":{\"id\":1,\"nome\":\"Joao da Silva\",\"email\":\"teste@teste\",\"dataNascimento\":\"01/12/1957\","
+				+ "\"autor\":{\"id\":2,\"nome\":\"Joao da Silva\",\"email\":\"teste@teste\",\"dataNascimento\":\"01/12/1957\","
 				+" \"miniCurriculo\":\"html css javascript PHP\"}}";
 		
 		mvc.perform(
