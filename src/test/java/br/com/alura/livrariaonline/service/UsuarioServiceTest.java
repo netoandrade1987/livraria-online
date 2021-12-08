@@ -8,12 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.alura.livrariaonline.dto.UsuarioDto;
 import br.com.alura.livrariaonline.dto.UsuarioFormDto;
-import br.com.alura.livrariaonline.infra.GeneratePassword;
 import br.com.alura.livrariaonline.modelo.Perfil;
 import br.com.alura.livrariaonline.repository.PerfilRepository;
 import br.com.alura.livrariaonline.repository.UsuarioRepository;
@@ -29,7 +26,7 @@ class UsuarioServiceTest {
 	private PerfilRepository perfilRepository;
 	
 	@InjectMocks
-	private UsuarioService service; 
+	private UsuarioServiceFake service; 
 	
 	
 	/**
@@ -45,7 +42,7 @@ class UsuarioServiceTest {
 		Perfil perfil = new Perfil(1L, "ADMIN");
 			
 		
-		UsuarioFormDto userFormDto = new UsuarioFormDto("Jose Mario", "josemario",perfil.getId());
+		UsuarioFormDto userFormDto = new UsuarioFormDto( "Jose Mario", "josemario",perfil.getId(), "teste@teste.com.br");
 		
 		
 		UsuarioDto dto =  service.cadastrar(userFormDto);

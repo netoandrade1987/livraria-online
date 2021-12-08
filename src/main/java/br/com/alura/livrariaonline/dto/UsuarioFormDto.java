@@ -1,5 +1,6 @@
 package br.com.alura.livrariaonline.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -19,6 +20,9 @@ public class UsuarioFormDto {
 	//	@JsonAlias("perfil_id")
 	private Long perfilId;
 	
+	@NotBlank
+	@Email
+	private String email;
 	
 
 	public String getNome() {
@@ -44,6 +48,17 @@ public class UsuarioFormDto {
 	public void setPerfilId(Long perfilId) {
 		this.perfilId = perfilId;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	
 	
 	
 	

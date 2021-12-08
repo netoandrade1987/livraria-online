@@ -87,7 +87,7 @@ public class UsuarioControllerTest {
 	@Test
 	void DeveriaCadastrarUmUsuarioComDadosCompletos() throws Exception {
 		
-		String json = "{ \"nome\" : \"Jose Silva\", \"login\" : \"josesilva\", \"perfilId\" : 1}";
+		String json = "{ \"nome\" : \"Jose Silva\", \"login\" : \"josesilva\", \"perfilId\" : 1, \"email\" : \"teste@teste.com\"}";
 		
 		String usuarioCadastrado = "{ \"nome\" : \"Jose Silva\", \"login\" : \"josesilva\"}";
 		

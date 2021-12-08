@@ -4,8 +4,6 @@ import java.util.Random;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,44 +12,38 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.livrariaonline.dto.AtualizaUsuarioFormDto;
 import br.com.alura.livrariaonline.dto.UsuarioDto;
 import br.com.alura.livrariaonline.dto.UsuarioFormDto;
 import br.com.alura.livrariaonline.infra.EnviadorDeEmailFake;
-import br.com.alura.livrariaonline.infra.EnviadorDeEmailReal;
 import br.com.alura.livrariaonline.modelo.Perfil;
 import br.com.alura.livrariaonline.modelo.Usuario;
 import br.com.alura.livrariaonline.repository.PerfilRepository;
 import br.com.alura.livrariaonline.repository.UsuarioRepository;
 
-@Service
-public class UsuarioService {
+//Obs: Tentei fazer conforme ensinado no vídeo, mas não funcionou.
+//Ficou dando Null Point Exception na classe de UsuarioServiceTest
+//No método cadastrar.
+//mesmo com a anotação @Autowired
+//Aí criou essa outra classe.
 
+
+@Service
+public class UsuarioServiceFake {
+	
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private PerfilRepository PerfilRepository;
-
-//Esse dois atributos tive que instanciar na mão.
-//Ficava dando Null Point Exception nas classes de testes, mesmo com a anotação @Autowired
-
-	private BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+	
+	
+	BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
-//Obs: Tentei fazer conforme ensinado no vídeo, mas não funcionou.
-//Ficou dando Null Point Exception na classe de UsuarioServiceTest
-//No método cadastrar.
-//mesmo com a anotação @Autowired
 	
-//Prod	
-	@Autowired
-	private EnviadorDeEmailReal enviadorDeEmail;
-
-
-//	@Autowired
-//	private EnviadorDeEmailFake enviadorDeEmail;
+	private EnviadorDeEmailFake enviadorDeEmail = new EnviadorDeEmailFake();
 	
 
 	public Page<UsuarioDto> listar(Pageable paginacao) {
@@ -97,40 +89,13 @@ public class UsuarioService {
 			
 			throw new IllegalArgumentException("Error ao cadastrar um Usuário");
 		}
+	
+	
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
+	
 
-		
-		
-		
-		
-		
-		
-
-
-	}
-
-	public UsuarioDto atualizar(@Valid AtualizaUsuarioFormDto dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void remover(@NotNull Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public UsuarioDto detalhar(@NotNull Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+ }
+	
 }
