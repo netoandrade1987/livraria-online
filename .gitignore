@@ -59,6 +59,5 @@ hs_err_pid*
 
 # Arquivos
 *.env
-livraria-online.env
-livraria-online_database.env
+
 

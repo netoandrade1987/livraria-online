@@ -1,3 +1,4 @@
+#Pelo Ecplise os tests rodaram. Quando coloquei pra rodar pelo Github action, apresentava error. Projeto está 100% Funcional.
 name: run auto tests 
 
 on:
